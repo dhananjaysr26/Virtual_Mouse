@@ -18,4 +18,4 @@ Package to install
 OR
 ----------------------------------------------
 pip install -r requirements.txt
-* install  tkinter separately
+	* install  tkinter separately
