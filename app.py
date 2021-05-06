@@ -2,6 +2,7 @@ from tkinter import *
 import tkinter as tk
 from PIL import Image,ImageTk
 from tkinter import messagebox
+import webbrowser
 
 # dictionary of colors:
 color = {"nero": "#252726", "orange": "#FF8700", "darkorange": "#FE6101"}
@@ -12,7 +13,8 @@ gif_backcolor="black"
 root = tk.Tk()
 root.title("Virtual Mouse Pro")
 root.config(bg=app_bg)
-root.geometry("500x600+850+50")
+root.geometry("500x650+500+50")
+root.resizable (0, 0)
 bg = PhotoImage(file = "img/1.png")
 w = Label(root, image=bg)
 w.place(x=0,y=0,relwidth=1,relheight=1)
@@ -25,6 +27,9 @@ navIcon = PhotoImage(file="img/menu.png")
 closeIcon = PhotoImage(file="img/cut.png")
 #button Fuction
 #Button
+git_url = "https://github.com/dhananjaysr26/Virtual_Mouse"
+def openweb():
+    webbrowser.open(git_url,new=1)
 def Exiting():
    messagebox.showinfo( "Virtual Mouse", "Thanks for Visiting! ")
    exit()
@@ -36,7 +41,24 @@ def show():
     import Action
 def Info():
    messagebox.showinfo( "Information", "How to USE TOUR")
+def About():
+    newWindow = Toplevel(root)
+    newWindow.title("About")
+    newWindow.geometry("350x230+500+250")
+    newWindow.resizable (0, 0)
+    newWindow.config(bg='plum1')
+    Label(newWindow,text ="@Virtual Mouse",bg="orange").pack(pady=3)
 
+    Label(newWindow,text ="Virtual Mouse is a Computer vision Application  ",bg="plum1").pack(pady=1)
+    Label(newWindow,text ="It is use for Mouse Functionality using  ",bg="plum1").pack(pady=1)
+    Label(newWindow,text ="Hand Gestures with the Help of ",bg="plum1").pack(pady=5)
+    Label(newWindow,text ="1.Python\n2.Tkinter3.\n3.OpenCv\nEasygui",bg="plum1").pack(pady=1)
+
+
+    B = Button(newWindow, text ="GitHub",activebackground='cyan2',bd=1,padx=5,pady=5,bg='plum3',command=openweb)
+    B.pack(side="left",pady=10)
+    B1= Button(newWindow, text ="Close",activebackground='cyan2',command = newWindow.destroy,bd=1,bg='plum3')
+    B1.pack(side="right",pady=10)
 
 # setting switch function:
 def switch():
@@ -93,7 +115,7 @@ def animation(count):
         count = 0
     anim = root.after(50,lambda :animation(count))
 
-gif_file="img/giphy2.gif"
+gif_file="img/arrow.gif"
 info = Image.open(gif_file)
 frames = info.n_frames  # gives total number of frames that gif contains
 # creating list of PhotoImage objects for each frames
@@ -135,7 +157,7 @@ tk.Label(navRoot, font="Bahnschrift 15", bg=color["orange"], fg="black", height=
 y = 80
 # option in the navbar:
 options = ["Quick Tour","Settings", "Help", "About", "Feedback","Exit"]
-Menu_click=[Exiting,Exiting,Exiting,Exiting,Exiting,Exiting]
+Menu_click=[Exiting,Exiting,Exiting,About,Exiting,Exiting]
 # Navbar Option Buttons:
 for i in range(6):
     tk.Button(navRoot, text=options[i], font="BahnschriftLight 15", bg="gray17", fg=color["orange"],command=Menu_click[i],activebackground="gray17", activeforeground="green", bd=0).place(x=25, y=y)
@@ -147,8 +169,6 @@ closeBtn.place(x=250, y=10)
 
 
 a = Label(root, text ="Copyright ©2021 All rights reserved")
-b = Label(root, text ="Virtual Mouse")
-b.pack(side="bottom",pady=5)
 a.pack(side="bottom",pady=2)
 
 # window in mainloop:
