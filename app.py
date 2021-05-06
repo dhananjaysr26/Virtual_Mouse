@@ -99,10 +99,6 @@ topFrame.pack(side="top", fill=tk.X)
 # Header label text:
 homeLabel = tk.Label(topFrame, text="Virtual Mouse", font="Bahnschrift 15", bg=color["orange"], fg="gray17", height=2, padx=20)
 homeLabel.pack(side="right")
-
-# Main label text:
-brandLabel = tk.Label(root, text="", font="System 30", bg="gray17", fg="green")
-brandLabel.place(x=100, y=250)
 #Logo**********************************************************************
 
 def animation(count):
@@ -156,7 +152,7 @@ tk.Label(navRoot, font="Bahnschrift 15", bg=color["orange"], fg="black", height=
 # set y-coordinate of Navbar widgets:
 y = 80
 # option in the navbar:
-options = ["Quick Tour","Settings", "Help", "About", "Feedback","Exit"]
+options = ["How to Use","Settings", "Help", "About", "Feedback","Exit"]
 Menu_click=[Exiting,Exiting,Exiting,About,Exiting,Exiting]
 # Navbar Option Buttons:
 for i in range(6):
