@@ -66,13 +66,17 @@ def Tour():
     TourWindow.geometry("700x700+500+250")
     TourWindow.resizable (0, 0)
     TourWindow.config(bg='plum1')
-    Label(TourWindow,text ="@Virtual Mouse",bg="orange").pack(pady=3)     
-    
-    img_How = ImageTk.PhotoImage(Image.open("img/How1.png"))
+    Label(TourWindow,text ="@Virtual Mouse",bg="orange").pack(pady=3)  
+    Label(TourWindow,text ="Step 1:Take a Yellow, red and blue coloured sticky tape or Plastic or           ",bg="plum2").pack(pady=1) 
+    Label(TourWindow,text ="         any material like cloth withut any design and stick it to your finger",bg="plum2").pack(pady=1)
+    Label(TourWindow,text ="with duct tape in following colour order.                                   ",bg="plum2").pack(pady=1) 
+    Label(TourWindow,text ="Step 2: Learn this following hand Gestures to trigger Mouse Functionality !",bg="plum2").pack(pady=10)  
+    img_How = ImageTk.PhotoImage(Image.open("img/How2.png"))
     panel = Label(TourWindow, image = img_How)
-    panel.pack(side = "top")
-    B1= Button(TourWindow, text ="Close",activebackground='cyan2',command = TourWindow.destroy,bd=1,bg='plum3')
+    panel.pack(pady=20)
+    B1= Button(TourWindow, text ="Close",activebackground='cyan2',command = TourWindow.destroy,bd=3,bg='plum3')
     B1.pack(side="bottom",pady=10)
+    TourWindow.mainloop()
 # setting switch function:
 def switch():
     global btnState
