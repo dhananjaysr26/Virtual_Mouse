@@ -3,6 +3,8 @@ import tkinter as tk
 from PIL import Image,ImageTk
 from tkinter import messagebox
 import webbrowser
+from tkinter import ttk
+from tkinter.ttk import Progressbar
 
 # dictionary of colors:
 color = {"nero": "#252726", "orange": "#FF8700", "darkorange": "#FE6101"}
@@ -27,6 +29,10 @@ navIcon = PhotoImage(file="img/menu.png")
 closeIcon = PhotoImage(file="img/cut.png")
 #button Fuction
 #Button
+def help_plz():
+    messagebox.showinfo( "Virtual Mouse", "It Will Open Help Forum Of Virtual Mouse! ")
+
+
 git_url = "https://github.com/dhananjaysr26/Virtual_Mouse"
 def openweb():
     webbrowser.open(git_url,new=1)
@@ -34,13 +40,45 @@ def Exiting():
    messagebox.showinfo( "Virtual Mouse", "Thanks for Visiting! ")
    exit()
 ###main Function
+#//////////////////////////////////////////////
+def bar():
+    temp=1
+    if temp==1:
+        import Action
+
+
+
 def show():
-   messagebox.showinfo( "Starting.....", "Program will Start")
-   A=1
-   if A==1:
-    import Action
-def Info():
-   messagebox.showinfo( "Information", "How to USE TOUR")
+    startWindow = Toplevel(root)
+    startWindow.title("Are You Ready?")
+    startWindow.geometry("700x700+500+250")
+    startWindow.resizable (0, 0)
+    startWindow.config(bg='plum1')
+    Label(startWindow,text ="1.Take Care Of Following Hand Gestures",bg="DarkOrange2").pack(pady=2)  
+    img_How = ImageTk.PhotoImage(Image.open("img/How2.png"))
+    panel = Label(startWindow, image = img_How)
+    panel.pack(pady=2)
+    Label(startWindow,text ="2.Callibration Of the Color                  ",bg="DarkOrange2").pack(pady=1)  
+    Label(startWindow,text ="3.After Callibration Successful           ",bg="orange2").pack(pady=1)  
+    Label(startWindow,text ="         Press P - ON/OFF Mouse Simulation",bg="salmon1").pack(pady=3) 
+    Label(startWindow,text ="Press ESC - Exit",bg="salmon1").pack(pady=2) 
+    # Progress bar widget
+    progress = Progressbar(startWindow, orient = HORIZONTAL,
+            length = 250, mode = 'determinate')
+    progress.pack(pady = 10)
+
+    # This button will initialize
+    # the progress bar
+    B1= Button(startWindow, text ="I AM READY",activebackground='cyan2',command = bar,bd=3,bg='plum3')
+    B1.pack(side="bottom",pady=10)
+    progress.pack(pady = 10)
+    # infinite loop
+    Cvar= tk.IntVar()
+    c1 = tk.Checkbutton(startWindow, text='Close this Window',variable=Cvar, onvalue=1, offvalue=0)
+    c1.pack(side='left')
+    startWindow.mainloop()
+
+#////////////////////////////////////////////////
 def About():
     newWindow = Toplevel(root)
     newWindow.title("About")
@@ -49,16 +87,15 @@ def About():
     newWindow.config(bg='plum1')
     Label(newWindow,text ="@Virtual Mouse",bg="orange").pack(pady=3)
 
-    Label(newWindow,text ="Virtual Mouse is a Computer vision Application  ",bg="plum1").pack(pady=1)
-    Label(newWindow,text ="It is use for Mouse Functionality using  ",bg="plum1").pack(pady=1)
-    Label(newWindow,text ="Hand Gestures with the Help of ",bg="plum1").pack(pady=5)
-    Label(newWindow,text ="1.Python\n2.Tkinter3.\n3.OpenCv\nEasygui",bg="plum1").pack(pady=1)
-
-
-    B = Button(newWindow, text ="GitHub",activebackground='cyan2',bd=1,padx=5,pady=5,bg='plum3',command=openweb)
-    B.pack(side="left",pady=10)
-    B1= Button(newWindow, text ="Close",activebackground='cyan2',command = newWindow.destroy,bd=1,bg='plum3')
-    B1.pack(side="right",pady=10)
+    Label(newWindow,text ="Virtual Mouse is a Computer vision Application",bg="plum1").pack(pady=0)
+    Label(newWindow,text ="It is use for Mouse Functionality using Hand     ",bg="plum1").pack(pady=0)
+    Label(newWindow,text ="Gestures with the Help of                                    ",bg="plum1").pack(pady=0)
+    Label(newWindow,text ="1.Python\n2.Tkinter3.\n3.OpenCv\n4.Easygui",bg="plum1").pack(pady=0)
+    Label(newWindow,text ="----------------------------------------------------------------------------",bg="plum1").pack(pady=0)
+    B = Button(newWindow, text ="GitHub",activebackground='cyan2',bd=2,bg='plum3',command=openweb)
+    B.pack(side="left",pady=2)
+    B1= Button(newWindow, text ="Close",activebackground='cyan2',command = newWindow.destroy,bd=2,bg='plum3')
+    B1.pack(side="right",pady=2)
 
 def Tour():
     TourWindow = Toplevel(root)
@@ -77,6 +114,14 @@ def Tour():
     B1= Button(TourWindow, text ="Close",activebackground='cyan2',command = TourWindow.destroy,bd=3,bg='plum3')
     B1.pack(side="bottom",pady=10)
     TourWindow.mainloop()
+#********************************************************************************************
+
+def feed():
+    A=1
+    if A==1:
+        import feedback
+
+#********************************************************************************
 # setting switch function:
 def switch():
     global btnState
@@ -155,7 +200,7 @@ B.pack(pady=10,side = "left")
 
 img_info = ImageTk.PhotoImage(Image.open("img/information.png"))
 img_label2=Label(image=img_info)
-B = Button(root, image=img_info,command =Info,borderwidth=0,activebackground='cyan2',bd='5',bg='orange2')
+B = Button(root, image=img_info,command =Tour,borderwidth=0,activebackground='cyan2',bd='5',bg='orange2')
 B.pack(pady=10,side = "right")
 #**************************************************************************
 
@@ -174,7 +219,7 @@ tk.Label(navRoot, font="Bahnschrift 15", bg=color["orange"], fg="black", height=
 y = 80
 # option in the navbar:
 options = ["How to Use","Settings", "Help", "About", "Feedback","Exit"]
-Menu_click=[Tour,Exiting,Exiting,About,Exiting,Exiting]
+Menu_click=[Tour,Exiting,help_plz,About,feed,Exiting]
 # Navbar Option Buttons:
 for i in range(6):
     tk.Button(navRoot, text=options[i], font="BahnschriftLight 15", bg="gray17", fg=color["orange"],command=Menu_click[i],activebackground="gray17", activeforeground="green", bd=0).place(x=25, y=y)
