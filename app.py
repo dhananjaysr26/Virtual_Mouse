@@ -60,6 +60,19 @@ def About():
     B1= Button(newWindow, text ="Close",activebackground='cyan2',command = newWindow.destroy,bd=1,bg='plum3')
     B1.pack(side="right",pady=10)
 
+def Tour():
+    TourWindow = Toplevel(root)
+    TourWindow.title("How To Use")
+    TourWindow.geometry("700x700+500+250")
+    TourWindow.resizable (0, 0)
+    TourWindow.config(bg='plum1')
+    Label(TourWindow,text ="@Virtual Mouse",bg="orange").pack(pady=3)     
+    
+    img_How = ImageTk.PhotoImage(Image.open("img/How1.png"))
+    panel = Label(TourWindow, image = img_How)
+    panel.pack(side = "top")
+    B1= Button(TourWindow, text ="Close",activebackground='cyan2',command = TourWindow.destroy,bd=1,bg='plum3')
+    B1.pack(side="bottom",pady=10)
 # setting switch function:
 def switch():
     global btnState
@@ -70,7 +83,7 @@ def switch():
             topFrame.update()
 
         # resetting widget colors:
-        brandLabel.config(bg="gray17", fg="green")
+        brandLabel.config(bg="black", fg="green")
         homeLabel.config(bg=color["orange"])
         topFrame.config(bg=color["orange"])
         root.config(bg="gray17")
@@ -79,7 +92,7 @@ def switch():
         btnState = False
     else:
         # make root dim:
-        brandLabel.config(bg=color["nero"], fg="#5F5A33")
+        brandLabel.config(bg='black', fg="#5F5A33")
         homeLabel.config(bg=color["nero"])
         topFrame.config(bg=color["nero"])
         root.config(bg=color["nero"])
@@ -99,6 +112,10 @@ topFrame.pack(side="top", fill=tk.X)
 # Header label text:
 homeLabel = tk.Label(topFrame, text="Virtual Mouse", font="Bahnschrift 15", bg=color["orange"], fg="gray17", height=2, padx=20)
 homeLabel.pack(side="right")
+
+# Main label text:
+brandLabel = tk.Label(root, font="System 30", bg="black", fg="green")
+brandLabel.place(x=100, y=250)
 #Logo**********************************************************************
 
 def animation(count):
@@ -153,7 +170,7 @@ tk.Label(navRoot, font="Bahnschrift 15", bg=color["orange"], fg="black", height=
 y = 80
 # option in the navbar:
 options = ["How to Use","Settings", "Help", "About", "Feedback","Exit"]
-Menu_click=[Exiting,Exiting,Exiting,About,Exiting,Exiting]
+Menu_click=[Tour,Exiting,Exiting,About,Exiting,Exiting]
 # Navbar Option Buttons:
 for i in range(6):
     tk.Button(navRoot, text=options[i], font="BahnschriftLight 15", bg="gray17", fg=color["orange"],command=Menu_click[i],activebackground="gray17", activeforeground="green", bd=0).place(x=25, y=y)
